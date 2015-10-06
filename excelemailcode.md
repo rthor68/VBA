@@ -7,7 +7,7 @@ Sub MailTo()
 
 End Sub
 
---generate e-mail to multiple recipients froma spreadsheet that contins some of teh addresses
+--generate e-mail to multiple recipients froma spreadsheet that contains some of the addresses
 
 Private Sub CommandButton72_Click()
 
