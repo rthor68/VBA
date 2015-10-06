@@ -1,0 +1,49 @@
+-- Finds a specific value within a specific row on a specific  workssheet and returns the column number 
+-- In the cae below the sheet is "ColumnOrder_Horizontal", the row is 30 and value is "ENCOUNTER_ID" 
+
+surrounded by wild cards (*)
+-- in case it is lead or followed by anything else
+
+Sub aTest()
+    Dim myCol As Long, rngFound As Range
+    
+    Set rngFound = Worksheets("ColumnOrder_Horizontal").Rows(30).Find(What:="*ENCOUNTER_ID*", 
+
+LookIn:=xlValues, LookAt:=xlWhole, _
+        SearchOrder:=xlByColumns, SearchDirection:=xlNext, MatchCase:=False)
+    If Not rngFound Is Nothing Then
+        myCol = rngFound.Column
+        MsgBox myCol
+    Else
+        MsgBox "Not Found"
+    End If
+    
+End Sub
+
+
+--Select Multiple ranges
+
+Sub Multiple_ranges()
+Range("A1:A10").Select                                                                                   
+
+                    
+MsgBox ("Single Range Selected")
+Range("A1:A10,D1:D10,F1:F10").Select
+MsgBox ("Multiple Ranges Selected")
+Selection.Copy
+Range("A11").Select
+ActiveSheet.Paste
+End Sub 
+
+
+--The following example creates a Range object called myMultipleRange, defines it as the ranges A1:B2 
+
+and C3:D4, and then formats the combined ranges as bold
+
+Sub MultipleRange()
+    Dim r1, r2, myMultipleRange As Range
+    Set r1 = Sheets("Sheet1").Range("A1:B2")
+    Set r2 = Sheets("Sheet1").Range("C3:D4")
+    Set myMultipleRange = Union(r1, r2)
+    myMultipleRange.Font.Bold = True
+End Sub
