@@ -38,3 +38,27 @@ Private Sub CommandButton72_Click()
     End With
     
 End Sub
+
+-- My attempt to combine a fixed range and a selected range (didn't work)
+
+Sub EmailRange()
+'Update 20131209
+Dim WorkRng As Range
+
+On Error Resume Next
+xTitleId = "Select Cells"
+Set WorkRng = Application.Selection
+Set WorkRng = Application.InputBox("Range", xTitleId, WorkRng.Address, Type:=8)
+'Set r2 = Sheets("Sheet1").Range("C1:C6")
+'Set myMultipleRange = Union(WorkRng, r2)
+Application.ScreenUpdating = False
+("C1:C6,WorkRng").Select
+ActiveWorkbook.EnvelopeVisible = True
+With ActiveSheet.MailEnvelope
+    .Introduction = "CLDR Change completion"
+    .Item.To = "alexander.thornhill@cls.ab.ca"
+    .Item.Subject = "CLDR Change Completion NOtification"
+    .Item.Send
+End With
+Application.ScreenUpdating = True
+End Sub
